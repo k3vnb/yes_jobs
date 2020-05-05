@@ -1,8 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { func } from 'prop-types';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import Header from './components/Header/Header';
 import SignUp from './components/SignUp/SignUp';
+import LandingPage from './components/LandingPage/LandingPage';
+import { currentUserShape } from './types';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 import { setCurrentUser } from './redux/user/user.actions';
 import './App.css';
@@ -32,10 +35,18 @@ class App extends React.Component {
   }
 
   render() {
+    const { currentUser } = this.props;
     return (
       <div className="App">
         <Header />
-        <SignUp />
+        <Switch>
+          <Route exact path="/" component={LandingPage} />
+          <Route
+            exact
+            path="/signin"
+            render={() => (currentUser ? <Redirect to="/" /> : <SignUp />)}
+          />
+        </Switch>
       </div>
     );
   }
@@ -43,10 +54,19 @@ class App extends React.Component {
 
 App.propTypes = {
   setCurrentUser: func.isRequired,
+  currentUser: currentUserShape.currentUser,
 };
+
+App.defaultProps = {
+  currentUser: null,
+};
+
+const mapStateToProps = ({ user }) => ({
+  currentUser: user.currentUser,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   setCurrentUser: (user) => dispatch(setCurrentUser(user)),
 });
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

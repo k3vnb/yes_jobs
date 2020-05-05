@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { currentUserShape } from '../../types';
 import { auth, signInWithGoogle } from '../../firebase/firebase.utils';
 import './Header.css';
 
@@ -27,6 +28,14 @@ const Header = ({ currentUser }) => {
       {greeting}
     </header>
   );
+};
+
+Header.propTypes = {
+  currentUser: currentUserShape.currentUser,
+};
+
+Header.defaultProps = {
+  currentUser: null,
 };
 
 const mapStateToProps = (state) => ({
