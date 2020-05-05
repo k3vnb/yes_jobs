@@ -1,22 +1,34 @@
 import React from 'react';
 import Header from './components/Header/Header';
-import { auth } from './firebase/firebase.utils';
+import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 import './App.css';
 
 class App extends React.Component {
+  unsubscribeFromAuth = null;
+
   constructor(props) {
     super(props);
     this.state = {
       currentUser: null,
-    }
+    };
   }
 
-  unsubscribeFromAuth = null;
-
   componentDidMount() {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(currentUser => {
-      this.setState({ currentUser })
-    })
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
+        userRef.onSnapshot((snapshot) => {
+          this.setState({
+            currentUser: {
+              id: snapshot.id,
+              ...snapshot.data(),
+            },
+          });
+        });
+      }
+      // set currentUser to null if !userAuth
+      this.setState({ currentUser: userAuth });
+    });
   }
 
   componentWillUnmount() {
@@ -27,9 +39,7 @@ class App extends React.Component {
     const { currentUser } = this.state;
     return (
       <div className="App">
-        <Header
-          currentUser={currentUser}
-        />
+        <Header currentUser={currentUser} />
       </div>
     );
   }
