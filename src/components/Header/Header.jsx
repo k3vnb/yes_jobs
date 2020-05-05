@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { auth, signInWithGoogle } from '../../firebase/firebase.utils';
 import './Header.css';
 
@@ -28,4 +29,8 @@ const Header = ({ currentUser }) => {
   );
 };
 
-export default Header;
+const mapStateToProps = (state) => ({
+  currentUser: state.user.currentUser,
+});
+
+export default connect(mapStateToProps)(Header);
