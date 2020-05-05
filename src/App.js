@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from './components/Header/Header';
+import SignUp from './components/SignUp/SignUp';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 import './App.css';
 
@@ -40,6 +41,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <Header currentUser={currentUser} />
+        <SignUp />
       </div>
     );
   }
