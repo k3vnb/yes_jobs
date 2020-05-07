@@ -1,0 +1,14 @@
+.flyout-menu {
+  box-shadow: 3px 3px 3px rgb(75, 75, 75);
+  background-color: white;
+  border-radius: 8px;
+  position: absolute;
+  width: 240px;
+  height: 340px;
+  padding: 1%;
+  display: flex;
+  border: 1px solid black;
+  top: 80px;
+  left: 0;
+  z-index: 5;
+}

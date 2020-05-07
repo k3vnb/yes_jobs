@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { currentUserShape } from '../../types';
+import FlyoutMenu from '../FlyoutMenu/FlyoutMenu';
 import { auth, signInWithGoogle } from '../../firebase/firebase.utils';
 import './Header.css';
 
 const Header = ({ currentUser }) => {
+  const [showFlyout, setShowFlyout] = useState(false);
+  const toggleShowFlyout = () => setShowFlyout(!showFlyout);
   const handleSignOut = () => auth.signOut();
   const signInOutBtn = currentUser ? (
     <button type="button" onClick={handleSignOut}>
@@ -24,8 +27,12 @@ const Header = ({ currentUser }) => {
 
   return (
     <header>
+      <button type="button" className="button-reset" onClick={toggleShowFlyout}>
+        YesJobs!
+      </button>
       {signInOutBtn}
       {greeting}
+      {showFlyout && <FlyoutMenu />}
     </header>
   );
 };

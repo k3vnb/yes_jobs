@@ -1,0 +1,13 @@
+.flex-container--centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-reset {
+  all: unset;
+}
+
+.button-reset:focus {
+  outline: none;
+}

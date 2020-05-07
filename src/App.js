@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { func } from 'prop-types';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import { initialQuestionSet } from './STORE';
 import Header from './components/Header/Header';
 import SignUp from './components/SignUp/SignUp';
 import LandingPage from './components/LandingPage/LandingPage';
@@ -13,7 +14,15 @@ import './App.css';
 class App extends React.Component {
   unsubscribeFromAuth = null;
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      questionSet: [],
+    };
+  }
+
   componentDidMount() {
+    this.setState({ questionSet: initialQuestionSet });
     const { setCurrentUser } = this.props;
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
