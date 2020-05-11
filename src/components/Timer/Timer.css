@@ -12,5 +12,21 @@
   margin-left: 5px;
 }
 .clock-container {
-  border: 1px solid black;
+  border: 2px solid rgb(207, 207, 207);
+  background-color: rgb(235, 235, 235);
+}
+.refresh-button {
+  margin-left: 20px !important;
+}
+.refresh-button:hover {
+  cursor: pointer;
+}
+.refresh-button:active,
+.refresh-button:focus {
+  box-shadow: 0px 0px 3px blue;
+}
+.timer-container {
+  display: flex;
+  justify-content: flex-end;
+  margin: 1% 5%;
 }

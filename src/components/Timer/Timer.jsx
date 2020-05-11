@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { number } from 'prop-types';
 import CircularProgress from '../CircularProgress/CircularProgress';
+import RefreshIcon from '../RefreshIcon/RefreshIcon';
 import './Timer.css';
 
 const Timer = ({ currentQuestionNumber }) => {
@@ -18,6 +19,8 @@ const Timer = ({ currentQuestionNumber }) => {
     setSecondsRemaining(countDownFrom);
   }, [currentQuestionNumber, countDownFrom]);
 
+  const refreshTimer = () => setSecondsRemaining(countDownFrom);
+
   const handleCheckbox = (e) => {
     setCountDownFrom(Number(e.target.value));
     setSecondsRemaining(Number(e.target.value));
@@ -32,11 +35,11 @@ const Timer = ({ currentQuestionNumber }) => {
         checked={countDownFrom === val}
         onChange={handleCheckbox}
       />
-      {!val ? 'Timer Off' : `${val}s`}
+      {!val ? ' Timer Off' : ` ${val}s`}
     </label>
   ));
   return (
-    <div style={{ display: 'flex' }}>
+    <div className="timer-container">
       <div className="clock-container">
         <CircularProgress
           radius={60}
@@ -45,7 +48,12 @@ const Timer = ({ currentQuestionNumber }) => {
           total={countDownFrom}
         />
       </div>
-      <form className="select-timer-form">{formFields}</form>
+      <form role="timer" className="select-timer-form">
+        <>
+          {formFields}
+          <RefreshIcon action={refreshTimer} />
+        </>
+      </form>
     </div>
   );
 };

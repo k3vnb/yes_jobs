@@ -26,15 +26,24 @@ const Flashcard = () => {
     removeAnimation(setFlipYAnimation);
     setCurrentQuestionNumber(randomQuestionIndex());
   };
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      toggleAnswerIsShown();
+    }
+  };
   const { question, answer, type } = initialQuestionSet[currentQuestionNumber];
   return (
     <section>
       <div className="flashcard__timer">
         <Timer currentQuestionNumber={currentQuestionNumber} />
       </div>
-      <article
+      <div
+        role="button"
+        ariaPressed={answerIsShown}
         className={flipXAnimation ? 'flashcard flip-x-animation' : 'flashcard'}
         onClick={toggleAnswerIsShown}
+        onKeyDown={handleKeyDown}
+        tabIndex={0}
       >
         <div className="flashcard__flip-instruction">
           <p className="flashcard__flip-instruction--outer">
@@ -50,7 +59,7 @@ const Flashcard = () => {
         ) : (
           <FlashCardFront question={question} flipY={flipYAnimation} />
         )}
-      </article>
+      </div>
       <button type="button" onClick={handleNextQuestion}>
         Next Question
       </button>
