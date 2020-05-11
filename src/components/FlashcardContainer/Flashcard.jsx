@@ -2,18 +2,21 @@ import React, { useState } from 'react';
 import { initialQuestionSet } from '../../STORE';
 import FlashCardFront from './FlashcardFront';
 import FlashCardBack from './FlashcardBack';
+import Timer from '../Timer/Timer';
 import './Flashcard.css';
 
 const Flashcard = () => {
   const randomQuestionIndex = () =>
     Math.ceil(Math.random() * initialQuestionSet.length) - 1;
   const [answerIsShown, setAnswerIsShown] = useState(false);
+  const [timerIsOn, setTimerIsOn] = useState(false);
   const [flipXAnimation, setFlipXAnimation] = useState(false);
   const [flipYAnimation, setFlipYAnimation] = useState(false);
   const [currentQuestionNumber, setCurrentQuestionNumber] = useState(
     randomQuestionIndex()
   );
   const removeAnimation = (callback) => setTimeout(() => callback(false), 500);
+  const toggleTimer = () => setTimerIsOn(!timerIsOn);
   const toggleAnswerIsShown = () => {
     setFlipXAnimation(true);
     removeAnimation(setFlipXAnimation);
@@ -28,6 +31,9 @@ const Flashcard = () => {
   const { question, answer, type } = initialQuestionSet[currentQuestionNumber];
   return (
     <section>
+      <div className="flashcard__timer">
+        <Timer toggleTimer={toggleTimer} timerIsOn={timerIsOn} />
+      </div>
       <article
         className={flipXAnimation ? 'flashcard flip-x-animation' : 'flashcard'}
         onClick={toggleAnswerIsShown}

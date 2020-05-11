@@ -1,12 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Comfortaa|Didact+Gothic|Ropa+Sans|Rubik+Mono+One&display=swap');
 .flashcard {
-  min-height: 500px;
+  min-height: 200px;
   border: 10px solid rgb(47, 230, 216);
   width: 80vw;
   max-width: 800px;
   margin: 5% auto;
-  padding: 3%;
+  padding: 1%;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  display: flex;
+  flex-direction: column;
 }
 .flashcard:hover {
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
@@ -16,6 +19,9 @@
   text-align: right;
 }
 .flashcard__flip-instruction--outer {
+  font-size: 0.85rem;
+  font-family: 'Didact Gothic', sans-serif;
+  margin: 0;
   color: #ff3ede;
   animation: flipInstructionText 9.5s ease-in-out;
 }
@@ -23,15 +29,32 @@
   display: inline-block;
   animation: flipInstructionText 10s ease-in-out;
 }
-
+.flashcard__content-container {
+  width: 100%;
+  flex-grow: 1;
+}
 .flashcard__title {
   text-align: center;
+  font-family: 'Ropa Sans', sans-serif;
+  font-weight: lighter;
+  font-size: 1.3em;
 }
-
+.flashcard-back__answer-section {
+  display: flex;
+}
+.flashcard-back__answer-section--left {
+  width: 60%;
+}
+.flashcard-back__answer-section--right {
+  width: 40%;
+}
+.flashcard-back__answer-section {
+  display: flex;
+  width: 100%;
+}
 .flip-x-animation {
   animation: flipX 0.3s;
 }
-
 .flip-y-animation {
   animation: flipY 0.3s;
 }

@@ -4,10 +4,15 @@ import './Flashcard.css';
 
 function FlashcardBack({ question, answer, type }) {
   return (
-    <>
-      <div>{question}</div>
-      <div>{answer ? answer : 'You have not answered this question'}</div>
-    </>
+    <div className="flashcard__content-container">
+      <h4 className="flashcard__title">{question}</h4>
+      <div className="flashcard-back__answer-section">
+        <div className="flashcard-back__answer-section--left">
+          {answer || 'You have not answered this question'}
+        </div>
+        <div className="flashcard-back__answer-section--right">Hey Hi</div>
+      </div>
+    </div>
   );
 }
 

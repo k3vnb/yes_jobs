@@ -63,7 +63,7 @@ export const initialQuestionSet = [
     type: 'b',
   },
   {
-    question: 'Why are applying for this postion?',
+    question: 'Why are you applying for this position?',
     answer: '',
     type: 'b',
   },

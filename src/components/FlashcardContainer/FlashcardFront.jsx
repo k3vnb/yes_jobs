@@ -6,10 +6,12 @@ function FlashcardFront({ question, flipY }) {
   return (
     <div
       className={
-        flipY ? 'flashcard__title flip-y-animation' : 'flashcard__title'
+        flipY
+          ? 'flashcard__content-container flex-container--centered flip-y-animation'
+          : 'flashcard__content-container flex-container--centered'
       }
     >
-      {question}
+      <h4 className="flashcard__title">{question}</h4>
     </div>
   );
 }
