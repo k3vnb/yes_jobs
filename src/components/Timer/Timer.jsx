@@ -1,24 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { bool, func } from 'prop-types';
 import ToggleSwitch from '../ToggleSwitch/ToggleSwitch';
+import CircularProgress from '../CircularProgress/CircularProgress';
 import './Timer.css';
 
 const Timer = ({ toggleTimer, timerIsOn }) => {
-  const [countDownFrom, setCountDownFrom] = useState(60);
+  const [countDownFrom, setCountDownFrom] = useState(30);
+  const [secondsRemaining, setSecondsRemaining] = useState(countDownFrom);
   useEffect(() => {
-    if (countDownFrom > 0) {
+    if (secondsRemaining > 0) {
       const interval = setInterval(() => {
-        setCountDownFrom(countDownFrom - 1);
+        setSecondsRemaining(secondsRemaining - 1);
       }, 1000);
       return () => clearInterval(interval);
     }
-  }, [countDownFrom]);
+  }, [secondsRemaining]);
   return (
     <div style={{ display: 'flex' }}>
-      <div>60 |</div>
-      <div>| 120 |</div>
-      <div>| 180</div>
-      {countDownFrom}
+      <CircularProgress
+        radius={60}
+        stroke={2}
+        progress={Math.abs(secondsRemaining - countDownFrom)}
+        total={countDownFrom}
+      />
+
+      {secondsRemaining}
       <ToggleSwitch toggleTimer={toggleTimer} timerIsOn={timerIsOn} />
       {/* <div className="timer-tooltip">Click the switch to use the timer</div> */}
     </div>
