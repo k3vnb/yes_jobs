@@ -9,14 +9,12 @@ const Flashcard = () => {
   const randomQuestionIndex = () =>
     Math.ceil(Math.random() * initialQuestionSet.length) - 1;
   const [answerIsShown, setAnswerIsShown] = useState(false);
-  const [timerIsOn, setTimerIsOn] = useState(false);
   const [flipXAnimation, setFlipXAnimation] = useState(false);
   const [flipYAnimation, setFlipYAnimation] = useState(false);
   const [currentQuestionNumber, setCurrentQuestionNumber] = useState(
     randomQuestionIndex()
   );
   const removeAnimation = (callback) => setTimeout(() => callback(false), 500);
-  const toggleTimer = () => setTimerIsOn(!timerIsOn);
   const toggleAnswerIsShown = () => {
     setFlipXAnimation(true);
     removeAnimation(setFlipXAnimation);
@@ -32,7 +30,7 @@ const Flashcard = () => {
   return (
     <section>
       <div className="flashcard__timer">
-        <Timer toggleTimer={toggleTimer} timerIsOn={timerIsOn} />
+        <Timer currentQuestionNumber={currentQuestionNumber} />
       </div>
       <article
         className={flipXAnimation ? 'flashcard flip-x-animation' : 'flashcard'}

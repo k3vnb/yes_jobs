@@ -1,0 +1,16 @@
+.select-timer-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 100px;
+  /* background-color: blue; */
+}
+.select-timer-form label {
+  margin-left: 20px;
+}
+.select-timer-form label input {
+  margin-left: 5px;
+}
+.clock-container {
+  border: 1px solid black;
+}
