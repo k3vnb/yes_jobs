@@ -1,0 +1,70 @@
+.flashcard {
+  min-height: 500px;
+  border: 10px solid rgb(47, 230, 216);
+  width: 80vw;
+  max-width: 800px;
+  margin: 5% auto;
+  padding: 3%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.flashcard:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+.flashcard__flip-instruction {
+  width: 100%;
+  text-align: right;
+}
+.flashcard__flip-instruction--outer {
+  color: #ff3ede;
+  animation: flipInstructionText 9.5s ease-in-out;
+}
+.flashcard__flip-instruction--inner {
+  display: inline-block;
+  animation: flipInstructionText 10s ease-in-out;
+}
+
+.flashcard__title {
+  text-align: center;
+}
+
+.flip-x-animation {
+  animation: flipX 0.3s;
+}
+
+.flip-y-animation {
+  animation: flipY 0.3s;
+}
+
+@keyframes flipInstructionText {
+  0% {
+    transform: rotateX(0deg);
+  }
+  86% {
+    transform: rotateX(0deg);
+    color: #ff3ede;
+  }
+  90% {
+    transform: rotateX(360deg);
+    color: #ff3edd;
+  }
+  100% {
+    transform: rotateX(0deg);
+  }
+}
+@keyframes flipX {
+  from {
+    transform: rotateX(0deg);
+  }
+  to {
+    transform: rotateX(360deg);
+  }
+}
+@keyframes flipY {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
