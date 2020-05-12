@@ -17,10 +17,10 @@
 .flashcard__flip-instruction {
   width: 100%;
   text-align: right;
+  font-family: 'Didact Gothic', sans-serif;
 }
 .flashcard__flip-instruction--outer {
   font-size: 0.85rem;
-  font-family: 'Didact Gothic', sans-serif;
   margin: 0;
   color: #ff3ede;
   animation: flipInstructionText 9.5s ease-in-out;

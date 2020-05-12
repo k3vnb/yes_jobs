@@ -1,12 +1,13 @@
 import React from 'react';
 import { func } from 'prop-types';
 
-const RefreshIcon = ({ action }) => {
+const RefreshIcon = ({ action, disabled }) => {
   return (
     <button
       type="button"
       className="refresh-button button-reset"
       title="refresh timer"
+      disabled={disabled}
       onClick={action}
     >
       <svg

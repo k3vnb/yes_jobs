@@ -34,13 +34,22 @@ const Timer = ({ currentQuestionNumber }) => {
         value={val}
         checked={countDownFrom === val}
         onChange={handleCheckbox}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') handleCheckbox(e);
+        }}
       />
       {!val ? ' Timer Off' : ` ${val}s`}
     </label>
   ));
   return (
     <div className="timer-container">
-      <div className="clock-container">
+      <div
+        className={
+          countDownFrom
+            ? 'clock-container clock-container--active'
+            : 'clock-container'
+        }
+      >
         <CircularProgress
           radius={60}
           stroke={23}
@@ -51,7 +60,7 @@ const Timer = ({ currentQuestionNumber }) => {
       <form role="timer" className="select-timer-form">
         <>
           {formFields}
-          <RefreshIcon action={refreshTimer} />
+          <RefreshIcon action={refreshTimer} disabled={!countDownFrom} />
         </>
       </form>
     </div>

@@ -30,7 +30,7 @@ const CircularProgress = ({ radius, stroke, progress, total }) => {
           className="progress-ring__circle"
           stroke="black"
           strokeWidth={stroke}
-          strokeOpacity={0.15}
+          strokeOpacity={!total ? 0.15 : 0.06}
           fill="transparent"
           r={normalizedRadius}
           cx={radius / 2}
