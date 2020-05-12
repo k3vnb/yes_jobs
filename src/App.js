@@ -7,6 +7,7 @@ import Header from './components/Header/Header';
 import SignUp from './components/SignUp/SignUp';
 import LandingPage from './components/LandingPage/LandingPage';
 import Flashcard from './components/FlashcardContainer/Flashcard';
+import QuestionList from './components/QuestionList/QuestionList';
 import { currentUserShape } from './types';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 import { setCurrentUser } from './redux/user/user.actions';
@@ -57,6 +58,7 @@ class App extends React.Component {
             render={() => (currentUser ? <Redirect to="/" /> : <SignUp />)}
           />
           <Route path="/flashcards" component={Flashcard} />
+          <Route path="/edit" component={QuestionList} />
         </Switch>
       </div>
     );

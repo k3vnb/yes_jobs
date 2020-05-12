@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { currentUserShape } from '../../types';
 import FlyoutMenu from '../FlyoutMenu/FlyoutMenu';
 import { auth, signInWithGoogle } from '../../firebase/firebase.utils';
@@ -28,8 +29,11 @@ const Header = ({ currentUser }) => {
   return (
     <header>
       <button type="button" className="button-reset" onClick={toggleShowFlyout}>
-        YesJobs!
+        Menu
       </button>
+      <Link to="/">
+        <h1>Yes Jobs!</h1>
+      </Link>
       {signInOutBtn}
       {greeting}
       {showFlyout && <FlyoutMenu />}
