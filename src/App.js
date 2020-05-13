@@ -41,16 +41,18 @@ class App extends React.Component {
     return (
       <div className="App">
         <Header />
-        <Switch>
-          <Route exact path="/" component={LandingPage} />
-          <Route
-            exact
-            path="/signin"
-            render={() => (currentUser ? <Redirect to="/" /> : <SignUp />)}
-          />
-          <Route path="/flashcards" component={Flashcard} />
-          <Route path="/edit" component={QuestionList} />
-        </Switch>
+        <main className="main__container">
+          <Switch>
+            <Route exact path="/" component={LandingPage} />
+            <Route
+              exact
+              path="/signin"
+              render={() => (currentUser ? <Redirect to="/" /> : <SignUp />)}
+            />
+            <Route path="/flashcards" component={Flashcard} />
+            <Route path="/edit" component={QuestionList} />
+          </Switch>
+        </main>
       </div>
     );
   }

@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Comfortaa|Didact+Gothic|Ropa+Sans|Rubik+Mono+One&display=swap');
 .flashcard {
   min-height: 200px;
+  background: white;
   border: 10px solid rgb(47, 230, 216);
   width: 80vw;
   max-width: 800px;

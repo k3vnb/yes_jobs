@@ -11,3 +11,8 @@
 .button-reset:focus {
   outline: none;
 }
+
+.main__container {
+  padding: 0.5% 2%;
+  background-color: rgb(245, 245, 245);
+}

@@ -10,6 +10,16 @@ const CircularProgress = ({ radius, stroke, progress, total }) => {
   return (
     <svg className="progress-ring" width={radius} height={radius}>
       <g>
+        <circle
+          className="progress-ring__circle"
+          stroke={!total ? 'rgb(207, 207, 207)' : 'rgb(225, 225, 225)'}
+          strokeWidth={stroke}
+          // strokeOpacity={!total ? 0.15 : 0.06}
+          fill="transparent"
+          r={normalizedRadius}
+          cx={radius / 2}
+          cy={radius / 2}
+        />
         {total && (
           <circle
             className="progress-ring__circle"
@@ -26,16 +36,6 @@ const CircularProgress = ({ radius, stroke, progress, total }) => {
             cy={radius / 2}
           />
         )}
-        <circle
-          className="progress-ring__circle"
-          stroke="black"
-          strokeWidth={stroke}
-          strokeOpacity={!total ? 0.15 : 0.06}
-          fill="transparent"
-          r={normalizedRadius}
-          cx={radius / 2}
-          cy={radius / 2}
-        />
       </g>
     </svg>
   );

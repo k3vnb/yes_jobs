@@ -13,10 +13,13 @@
 }
 .clock-container {
   background-color: rgb(243, 243, 243);
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
   transition: background-color 0.3s;
 }
 .clock-container--active {
-  background-color: white;
+  background-color: rgb(201, 240, 253);
 }
 .refresh-button {
   margin-left: 20px !important;
