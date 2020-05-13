@@ -60,7 +60,10 @@ const Timer = ({ currentQuestionNumber }) => {
       <form role="timer" className="select-timer-form">
         <>
           {formFields}
-          <RefreshIcon action={refreshTimer} disabled={!countDownFrom} />
+          <RefreshIcon
+            action={refreshTimer}
+            disabled={Boolean(!countDownFrom)}
+          />
         </>
       </form>
     </div>

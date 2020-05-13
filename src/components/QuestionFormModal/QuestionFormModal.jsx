@@ -9,6 +9,13 @@ const QuestionFormModal = ({ questionObj, closeModal }) => {
   return (
     <dialog className="question-form__modal flex-container--centered">
       <form className="question-form__form">
+        <button
+          type="button"
+          className="question-form__btn question-form__btn--cancel"
+          onClick={closeModal}
+        >
+          Cancel
+        </button>
         <h4>{question}</h4>
         <label htmlFor="answer">
           Your Answer:
@@ -19,13 +26,6 @@ const QuestionFormModal = ({ questionObj, closeModal }) => {
           className="question-form__btn question-form__btn--submit"
         >
           Save
-        </button>
-        <button
-          type="button"
-          className="question-form__btn question-form__btn--cancel"
-          onClick={closeModal}
-        >
-          Cancel
         </button>
       </form>
     </dialog>

@@ -6,7 +6,7 @@ import { initialQuestionSet } from './STORE';
 import Header from './components/Header/Header';
 import SignUp from './components/SignUp/SignUp';
 import LandingPage from './components/LandingPage/LandingPage';
-import Flashcard from './components/FlashcardContainer/Flashcard';
+import Flashcard from './components/Flashcard/Flashcard';
 import QuestionList from './components/QuestionList/QuestionList';
 import { currentUserShape } from './types';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';

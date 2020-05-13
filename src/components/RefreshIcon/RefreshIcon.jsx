@@ -1,5 +1,5 @@
 import React from 'react';
-import { func } from 'prop-types';
+import { func, bool } from 'prop-types';
 
 const RefreshIcon = ({ action, disabled }) => {
   return (
@@ -10,12 +10,7 @@ const RefreshIcon = ({ action, disabled }) => {
       disabled={disabled}
       onClick={action}
     >
-      <svg
-        width="30"
-        height="28"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlnsSvg="http://www.w3.org/2000/svg"
-      >
+      <svg width="30" height="28" xmlns="http://www.w3.org/2000/svg">
         <g>
           <title>Layer 1</title>
           <g id="Layer_3_copy_2">
@@ -42,6 +37,11 @@ const RefreshIcon = ({ action, disabled }) => {
 
 RefreshIcon.propTypes = {
   action: func.isRequired,
+  disabled: bool,
+};
+
+RefreshIcon.defaultProps = {
+  disabled: false,
 };
 
 export default RefreshIcon;

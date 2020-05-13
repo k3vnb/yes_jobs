@@ -48,7 +48,7 @@ const Flashcard = () => {
       </div>
       <div
         role="button"
-        ariaPressed={answerIsShown}
+        aria-pressed={answerIsShown}
         className={flipXAnimation ? 'flashcard flip-x-animation' : 'flashcard'}
         onClick={toggleAnswerIsShown}
         onKeyDown={handleKeyDown}
