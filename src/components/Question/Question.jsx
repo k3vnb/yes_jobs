@@ -1,13 +1,17 @@
 import React from 'react';
-import { string } from 'prop-types';
+import { shape, string } from 'prop-types';
+import './Question.css';
 
-const Question = ({ question, answer }) => {
-  return <div>{question}</div>;
+const Question = ({ questionObj }) => {
+  const { question } = questionObj;
+  return <div className="question__container">{question}</div>;
 };
 
 Question.propTypes = {
-  question: string.isRequired,
-  answer: string.isRequired,
+  questionObj: shape({
+    question: string.isRequired,
+    answer: string.isRequired,
+  }).isRequired,
 };
 
 export default Question;

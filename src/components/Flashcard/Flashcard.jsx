@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import { initialQuestionSet } from '../../STORE';
+import { connect } from 'react-redux';
+import { shape, string, arrayOf } from 'prop-types';
 import FlashCardFront from './FlashcardFront';
 import FlashCardBack from './FlashcardBack';
 import QuestionFormModal from '../QuestionFormModal/QuestionFormModal';
 import Timer from '../Timer/Timer';
 import './Flashcard.css';
 
-const Flashcard = () => {
+const Flashcard = ({ questionSet }) => {
   const randomQuestionIndex = () =>
-    Math.ceil(Math.random() * initialQuestionSet.length) - 1;
+    Math.ceil(Math.random() * questionSet.length) - 1;
   const [answerIsShown, setAnswerIsShown] = useState(false);
   const [flipXAnimation, setFlipXAnimation] = useState(false);
   const [flipYAnimation, setFlipYAnimation] = useState(false);
@@ -35,7 +36,7 @@ const Flashcard = () => {
       toggleAnswerIsShown();
     }
   };
-  const { question, answer, type } = initialQuestionSet[currentQuestionNumber];
+  const { question, answer, type } = questionSet[currentQuestionNumber];
   return (
     <section>
       <div className="flashcard__timer">
@@ -74,7 +75,7 @@ const Flashcard = () => {
       </button>
       {showQuestionFormModal && (
         <QuestionFormModal
-          questionObj={initialQuestionSet[currentQuestionNumber]}
+          questionObj={questionSet[currentQuestionNumber]}
           closeModal={toggleShowQuestionFormModal}
         />
       )}
@@ -82,4 +83,19 @@ const Flashcard = () => {
   );
 };
 
-export default Flashcard;
+Flashcard.propTypes = {
+  questionSet: arrayOf(
+    shape({
+      id: string.isRequired,
+      question: string.isRequired,
+      answer: string.isRequired,
+      type: string.isRequired,
+    }).isRequired
+  ).isRequired,
+};
+
+const mapStateToProps = ({ questionSet }) => ({
+  questionSet,
+});
+
+export default connect(mapStateToProps)(Flashcard);

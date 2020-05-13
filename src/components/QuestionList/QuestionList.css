@@ -1,0 +1,5 @@
+.question-list__container {
+  padding: 1%;
+  max-width: 500px;
+  border: 0.5px solid black;
+}
