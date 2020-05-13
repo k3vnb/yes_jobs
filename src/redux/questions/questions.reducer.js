@@ -7,7 +7,6 @@ const questionReducer = (state = INITIAL_STATE, action) => {
   const { UPDATE_QUESTION_ANSWER } = QuestionActionTypes;
   switch (action.type) {
     case UPDATE_QUESTION_ANSWER:
-      alert(action.payload.answer);
       return [
         ...state.filter(({ id }) => action.payload.id !== id),
         action.payload,

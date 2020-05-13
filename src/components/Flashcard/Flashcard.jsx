@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { connect } from 'react-redux';
 import { shape, string, arrayOf } from 'prop-types';
 import FlashCardFront from './FlashcardFront';
@@ -8,18 +8,32 @@ import Timer from '../Timer/Timer';
 import './Flashcard.css';
 
 const Flashcard = ({ questionSet }) => {
-  const randomQuestionIndex = () =>
-    Math.ceil(Math.random() * questionSet.length) - 1;
+  const randomQuestionIndex = useCallback(
+    () => Math.ceil(Math.random() * questionSet.length) - 1,
+    [questionSet.length]
+  );
   const [answerIsShown, setAnswerIsShown] = useState(false);
+  const [preserveCurrentQuestionId, setPreserveCurrentQuestionId] = useState(
+    ''
+  );
   const [flipXAnimation, setFlipXAnimation] = useState(false);
   const [flipYAnimation, setFlipYAnimation] = useState(false);
   const [showQuestionFormModal, setShowQuestionFormModal] = useState(false);
-  const [currentQuestionNumber, setCurrentQuestionNumber] = useState(
-    randomQuestionIndex()
-  );
+  const [currentQuestion, setCurrentQuestion] = useState({});
+  useEffect(() => {
+    if (preserveCurrentQuestionId) {
+      const [updatedQuestion] = questionSet.filter(
+        ({ id }) => id === preserveCurrentQuestionId
+      );
+      return setCurrentQuestion(updatedQuestion);
+    }
+    return setCurrentQuestion(questionSet[randomQuestionIndex()]);
+  }, [questionSet, randomQuestionIndex, preserveCurrentQuestionId]);
   const removeAnimation = (callback) => setTimeout(() => callback(false), 500);
-  const toggleShowQuestionFormModal = () =>
+  const toggleShowQuestionFormModal = () => {
     setShowQuestionFormModal(!showQuestionFormModal);
+    setPreserveCurrentQuestionId(currentQuestion.id);
+  };
   const toggleAnswerIsShown = () => {
     setFlipXAnimation(true);
     removeAnimation(setFlipXAnimation);
@@ -29,18 +43,18 @@ const Flashcard = ({ questionSet }) => {
     setAnswerIsShown(false);
     setFlipYAnimation(true);
     removeAnimation(setFlipYAnimation);
-    setCurrentQuestionNumber(randomQuestionIndex());
+    setCurrentQuestion(questionSet[randomQuestionIndex()]);
   };
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
       toggleAnswerIsShown();
     }
   };
-  const { question, answer, type } = questionSet[currentQuestionNumber];
+  const { question, answer, type } = currentQuestion;
   return (
     <section>
       <div className="flashcard__timer">
-        <Timer currentQuestionNumber={currentQuestionNumber} />
+        <Timer currentQuestion={currentQuestion} />
       </div>
       <div className="flashcard__add-edit-btn">
         <button type="button" onClick={toggleShowQuestionFormModal}>
@@ -75,7 +89,7 @@ const Flashcard = ({ questionSet }) => {
       </button>
       {showQuestionFormModal && (
         <QuestionFormModal
-          questionObj={questionSet[currentQuestionNumber]}
+          questionObj={currentQuestion}
           closeModal={toggleShowQuestionFormModal}
         />
       )}

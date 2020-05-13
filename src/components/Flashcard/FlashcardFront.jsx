@@ -17,8 +17,12 @@ function FlashcardFront({ question, flipY }) {
 }
 
 FlashcardFront.propTypes = {
-  question: string.isRequired,
+  question: string,
   flipY: bool.isRequired,
+};
+
+FlashcardFront.defaultProps = {
+  question: '',
 };
 
 export default FlashcardFront;

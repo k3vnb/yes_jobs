@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { number } from 'prop-types';
+import { shape, string } from 'prop-types';
 import CircularProgress from '../CircularProgress/CircularProgress';
 import RefreshIcon from '../RefreshIcon/RefreshIcon';
 import './Timer.css';
 
-const Timer = ({ currentQuestionNumber }) => {
+const Timer = ({ currentQuestion }) => {
   const [countDownFrom, setCountDownFrom] = useState(0);
   const [secondsRemaining, setSecondsRemaining] = useState(0);
   useEffect(() => {
@@ -17,7 +17,7 @@ const Timer = ({ currentQuestionNumber }) => {
   }, [secondsRemaining]);
   useEffect(() => {
     setSecondsRemaining(countDownFrom);
-  }, [currentQuestionNumber, countDownFrom]);
+  }, [currentQuestion, countDownFrom]);
 
   const refreshTimer = () => setSecondsRemaining(countDownFrom);
 
@@ -71,7 +71,16 @@ const Timer = ({ currentQuestionNumber }) => {
 };
 
 Timer.propTypes = {
-  currentQuestionNumber: number.isRequired,
+  currentQuestion: shape({
+    id: string,
+    question: string,
+    answer: string,
+    type: string,
+  }),
+};
+
+Timer.defaultProps = {
+  currentQuestion: { id: '', question: '', answer: '', type: '' },
 };
 
 export default Timer;

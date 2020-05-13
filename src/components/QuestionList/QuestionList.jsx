@@ -14,7 +14,7 @@ const QuestionList = ({ questionSet }) => {
   const [selectedQuestion] = questionSet.filter(
     ({ id }) => id === selectedQuestionId
   );
-  const { answer } = selectedQuestion;
+  const { answer, question } = selectedQuestion;
   const questionList = questionSet.map((questionObj) => (
     <Question
       key={questionObj.id}
@@ -27,6 +27,7 @@ const QuestionList = ({ questionSet }) => {
     <section className="question-list__main-container">
       <div className="question-list__container">{questionList}</div>
       <div className="answer-list__container">
+        <h4>{question}</h4>
         {answer || 'You have not answered this question'}
         <button type="button" onClick={toggleShowQuestionFormModal}>
           {answer ? 'Edit Answer' : 'Add Answer'}
