@@ -1,3 +1,6 @@
 .question__container {
   margin-bottom: 2%;
 }
+.highlighted {
+  background-color: yellow;
+}

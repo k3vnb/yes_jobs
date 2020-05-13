@@ -1,10 +1,27 @@
 import React from 'react';
-import { shape, string } from 'prop-types';
+import { shape, string, func, bool } from 'prop-types';
 import './Question.css';
 
-const Question = ({ questionObj }) => {
+const Question = ({ questionObj, onSelectQuestion, highlighted }) => {
   const { question } = questionObj;
-  return <div className="question__container">{question}</div>;
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      onSelectQuestion();
+    }
+  };
+  return (
+    <div
+      tabIndex={0}
+      role="button"
+      className={
+        highlighted ? 'question__container highlighted' : 'question__container'
+      }
+      onClick={onSelectQuestion}
+      onKeyDown={handleKeyDown}
+    >
+      {question}
+    </div>
+  );
 };
 
 Question.propTypes = {
@@ -12,6 +29,8 @@ Question.propTypes = {
     question: string.isRequired,
     answer: string.isRequired,
   }).isRequired,
+  onSelectQuestion: func.isRequired,
+  highlighted: bool.isRequired,
 };
 
 export default Question;
